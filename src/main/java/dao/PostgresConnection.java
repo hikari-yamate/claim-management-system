@@ -8,9 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class MySqlConnection implements IConnection {
+public class PostgresConnection implements IConnection {
     
-    private final String url = "jdbc:mysql://localhost:3306/library_management";
+    private final String url = "jdbc:mysql://localhost:3306/claims";
     private final String username = "root";
     private final String password = "20112001";
 
@@ -21,12 +21,11 @@ public class MySqlConnection implements IConnection {
             
             return DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MySqlConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostgresConnection.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostgresConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
 
 }

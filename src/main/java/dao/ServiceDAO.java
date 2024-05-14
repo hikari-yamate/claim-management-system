@@ -12,7 +12,7 @@ import java.util.List;
 
 public abstract class ServiceDAO<T> implements IServiceDAO<T>{
 
-    private IConnection connector = new MySqlConnection();
+    private IConnection connector = new PostgresConnection();
 
 
     @Override
