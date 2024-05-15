@@ -10,13 +10,14 @@ import java.util.logging.Logger;
 
 public class PostgresConnection implements IConnection {
     
-    private final String url = "jdbc:mysql://localhost:3306/claims";
+    private final String url = "jdbc:mysql://localhost:3306/claims"; // jdbc:postgresql://localhost:5432/testdb
     private final String username = "root";
     private final String password = "20112001";
 
     @Override
     public Connection getConnetion() {
         try {
+            // org.postgresql.Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             return DriverManager.getConnection(url, username, password);

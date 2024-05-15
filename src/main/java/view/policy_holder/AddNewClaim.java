@@ -12,7 +12,12 @@ import service.ClaimServiceImpl;
 import utils.DateTimeUtils;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.nio.file.Files;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author ADMIN
@@ -42,6 +47,7 @@ public class AddNewClaim extends javax.swing.JFrame {
                     .receiverBankName(jTextField5.getText())
                     .receiverBankAccount(jTextField6.getText())
                     .document(jLabel9.getText())
+                    .status("NEW")
                     .build();
             try {
                 claimService.save(claim);
@@ -52,7 +58,21 @@ public class AddNewClaim extends javax.swing.JFrame {
         });
 
         jButton1.addActionListener((e) -> {
-
+            JFileChooser input = new JFileChooser();
+            int result = input.showSaveDialog(this);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = input.getSelectedFile();
+                    String document = "Claim_" + UUID.randomUUID() + ".jpeg";
+                    jLabel9.setText(document);
+                    File newFile = new File(document);
+                    Files.copy(file.toPath(), newFile.toPath());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            } else if (result == JFileChooser.CANCEL_OPTION) {
+                System.out.println("Cancel was selected");
+            }
         });
     }
 
@@ -92,9 +112,7 @@ public class AddNewClaim extends javax.swing.JFrame {
 
         jLabel2.setText("Isurance person");
 
-        jTextField1.setText("jTextField1");
 
-        jTextField2.setText("jTextField1");
 
         jLabel3.setText("Card number");
 

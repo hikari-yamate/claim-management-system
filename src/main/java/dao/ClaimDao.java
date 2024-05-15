@@ -13,6 +13,12 @@ public class ClaimDao extends ServiceDAO<Claim> implements IServiceDAO<Claim>, I
     }
 
     @Override
+    public Claim findById(Long id) {
+        List<Claim> claims = query("SELECT * FROM claim_request WHERE id = ?", new Claim.ClaimMapper(), id);
+        return claims.isEmpty()? null : claims.get(0);
+    }
+
+    @Override
     public void save(Claim claim) {
         insert("INSERT INTO claim_request(insuredPerson,cardNumber,examDate,document,claimAmount,status,receiverBankName,receiverBankAccount) " +
                 "VALUES (?,?,?,?,?,?,?,?)",
@@ -24,5 +30,12 @@ public class ClaimDao extends ServiceDAO<Claim> implements IServiceDAO<Claim>, I
                 claim.getStatus(),
                 claim.getReceiverBankName(),
                 claim.getReceiverBankAccount());
+    }
+
+    @Override
+    public void updateStatus(Claim claim) {
+        update("UPDATE claim_request SET status = ?, notes = ? where id = ?", claim.getStatus(),
+                 claim.getNote(),
+                claim.getId());
     }
 }

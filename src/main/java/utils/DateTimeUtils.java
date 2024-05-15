@@ -19,9 +19,9 @@ public class DateTimeUtils {
         try {
             return formatter.parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("Error warning " + e.getMessage());
         }
-        return new Date();
+        return null;
     }
 
     public static Date toDate(String date) {

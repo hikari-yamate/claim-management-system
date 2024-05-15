@@ -18,8 +18,24 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
+    public Claim getById(Long claimId) {
+        return claimDao.findById(claimId);
+    }
+
+    @Override
     public Claim save(Claim claim) {
         claimDao.save(claim);
         return claim;
+    }
+
+    @Override
+    public void updateStatus(Long claimId, String status, String note) {
+        Claim c = getById(claimId);
+        if(c == null) {
+            return;
+        }
+        c.setStatus(status);
+        c.setNote(note);
+        claimDao.updateStatus(c);
     }
 }
