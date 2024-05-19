@@ -1,4 +1,5 @@
 Video demo link: https://www.youtube.com/watch?v=sseogAhW0vQ
+
 To use this system, the users have to log in your account. In case they don’t have an account yet, they can register on our system. Our system has 6 roles including policy holder, policy owner, dependent, insurance surveyor, insurance manager and admin.
  
 Dependent: is allowed to retrieve their claims and their information. After logging in, a window will pop up to show the function for retrieving their claims and their information. The users just need to click on the View Claim button to see the information.
